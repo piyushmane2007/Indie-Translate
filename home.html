@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie-Translate</title>
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body> 
+    <div class="app-wrapper">
+        <header class="top">
+            <h1>Indie-Translate</h1>
+            <p class="subtitle">Fast, accurate Indian language translation platform</p>
+        </header> 
+
+        <main class="content">
+            <form action="{{url_for('translate')}}" id="translationform" method="POST">
+                <!-- Dropdown Selector Grid -->
+                <div class="language-grid">
+                    <div class="sourcelanguage">
+                        <label for="sourcelan" class="form-label">Source Language</label>
+                        <select id="sourcelan" class="form-select" name="sourcelan">
+                            <option value="en" selected>English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="bn">Bengali</option>
+                            <option value="te">Telugu</option>
+                            <option value="mr">Marathi</option>
+                            <option value="ta">Tamil</option>
+                            <option value="gu">Gujrati</option>
+                            <option value="ur">Urdu</option>
+                            <option value="kn">Kannada</option>
+                            <option value="ml">Malayalam</option>
+                        </select>
+                    </div> 
+                    
+                    <div class="targetlanguage">
+                        <label for="targetlan" class="form-label">Target Language</label>
+                        <select id="targetlan" class="form-select" name="targetlan">
+                            <option value="en">English</option>
+                            <option value="hi" selected>Hindi</option>
+                            <option value="bn">Bengali</option>
+                            <option value="te">Telugu</option>
+                            <option value="mr">Marathi</option>
+                            <option value="ta">Tamil</option>
+                            <option value="gu">Gujrati</option>
+                            <option value="ur">Urdu</option>
+                            <option value="kn">Kannada</option>
+                            <option value="ml">Malayalam</option>
+                        </select>
+                    </div> 
+                </div>
+
+                <!-- Input Text Box -->
+                <div class="text_totranslate">
+                    <label for="texttotranslate" class="form-label">Text to Translate</label>
+                    <textarea id="texttotranslate" class="form-control" rows="5" name="texttotranslate" placeholder="Type or paste your text here..."></textarea>
+                </div>
+
+                <!-- Action Button -->
+                <div class="btn-container">
+                    <button type="submit">
+                        Translate Text
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </form>
+        </main> 
+
+        <!-- Output Result Panel -->
+        {% if translated_text %}
+        <section class="result-container">
+            <h2>Translation Result:</h2>
+            <div class="result-box">
+                <p id="translated-output">{{translated_text}}</p>
+            </div>
+        </section> 
+        {% endif %}
+
+        <footer>Created by <span>Piyush Mane</span></footer>
+    </div>
+</body>
+</html>
